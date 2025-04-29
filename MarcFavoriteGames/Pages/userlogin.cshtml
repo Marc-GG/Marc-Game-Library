@@ -1,0 +1,90 @@
+﻿@page
+@model MarcFavoriteGames.Pages.userloginModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img width="150px" src="~/images/question.png" />
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h3>User Login</h3>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr />
+                        </div>
+                    </div>
+
+                   
+                        <div class="row">
+                            <div class="col">
+
+                                <form method="post">
+                                    <label>User Username</label>
+                                    <div class="mb-3">
+                                        <input type="text" asp-for="UserID" placeholder="User ID" class="form-control" />
+                                    </div>
+
+                                    <label>User Password</label>
+                                    <div class="mb-3">
+                                        <input type="password" asp-for="UserPW" placeholder="User Password" class="form-control" />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <button type="submit" asp-route-clicked="true" class="btn btn-success w-100 btn-lg text-center">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <div class="mb-3">
+                                    <a class="btn btn-info w-100 btn-lg text-center" id="Button2" asp-page="/UserSignup">Sign Up</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    
+
+                </div>
+            </div>
+
+            <a class="nav-link" asp-page="/Home"><< Back to Home</a><br />
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["SuccessMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    @* Clear TempData after displaying it *@
+    TempData.Remove("SuccessMessage");
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["ErrorMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("ErrorMessage");
+}

@@ -1,0 +1,125 @@
+﻿@page "/"
+@model HomeModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<link href="~/css/home.css" rel="stylesheet" asp-append-version="true" />
+
+<section class="container-fluid p-0">
+    <img src="~/images/redo.png" alt="Gaming Library Banner" class="img-fluid w-100" style="height: auto" object-fit: cover;">
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <center>
+                <h2>Content</h2>
+                    <p> <b>Some features</b></p>
+                </center>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <center>
+                <img width="150px" src="~/images/video-game.png" />
+                <h4>Game Inventory</h4>
+                <p class="text-justify">Behold my collection. Marvelous, Beautiful, and Extravagant. 
+                   The prize of the times, and the apple of my eye. 
+                   - Marc Guarino</p>
+                </center>
+            </div>
+
+            <div class="col-md-4">
+                <center>
+                    <img width="150px" src="~/images/vr-glasses.png" />
+                    <h4>Search My Games</h4>
+                    <p class="text-justify">
+                        Seek and You shall find. Knock and the Door shall be open to you. Find out if we have the same tastes!
+                    </p>
+                </center>
+            </div>
+
+            <div class="col-md-4">
+                <center>
+                    <img width="150px" src="~/images/mushroom.png" />
+                    <h4>Support</h4>
+                    <p class="text-justify">
+                        Please feel free to contact me for any inquiries. Im happy to help or talk about anything Gaming!
+                    </p>
+                </center>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="container-fluid p-0">
+    <img src="~/images/v.jpg" alt="Gaming Library Banner" class="img-fluid w-100" style="height:auto" object-fit: cover;">
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <center>
+                    <h2>Join Us</h2>
+                    <p> <b>Lets have some Fun!</b></p>
+                </center>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <center>
+                    <img width="150px" src="~/images/lives.png" />
+                    <h4>Sign Up</h4>
+                    <p class="text-justify">
+                        Sign up now and get the latest updates and features of this page!
+                    </p>
+                </center>
+            </div>
+
+            <div class="col-md-4">
+                <center>
+                    <img width="150px" src="~/images/gamepad.png" />
+                    <h4>Forums</h4>
+                    <p class="text-justify">
+                        Stop by our forums and leave any suggestions or comments for me!
+                    </p>
+                </center>
+            </div>
+
+            <div class="col-md-4">
+                <center>
+                    <img width="150px" src="~/images/Discord.png" />
+                    <h4>Community Discord</h4>
+                    <p class="text-justify">
+                        Come join our gaming community where we chat, hangout, and play various games!
+                    </p>
+                </center>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["SuccessMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("SuccessMessage");
+}
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["ErrorMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("ErrorMessage");
+}

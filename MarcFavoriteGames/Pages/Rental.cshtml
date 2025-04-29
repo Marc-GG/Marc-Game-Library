@@ -1,0 +1,166 @@
+﻿@page
+@model MarcFavoriteGames.Pages.RentalModel
+@{
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col">
+                            <center>
+                                <h4>Game Rentals</h4>
+                            </center>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img width="100px" src="~/images/game-controller.png" />
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>Member ID</label>
+                            <div class="mb-3">
+                                <input type="text" id="MemberID" name="Member" placeholder="MemberID" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Game ID</label>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <input type="text" id="GameID" name="Game ID" placeholder="Game ID" class="form-control" />
+                                    <a class="btn btn-primary" id="Button3">Go</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>Member Name</label>
+                            <div class="mb-3">
+                                <input type="text" id="MemberNameID" name="Member Name" placeholder="Member Name" class="form-control" readonly/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Game Name</label>
+                            <div class="mb-3">
+                                <input type="text" id="GameNameID" name="Game Name" placeholder="Game Name" class="form-control" readonly />
+                            </div>
+                        </div>
+                  
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>Start Date</label>
+                            <div class="mb-3">
+                                <input type="date" id="StartDateID" name="Start Date" placeholder="Start Date" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>End Date</label>
+                            <div class="mb-3">
+                                <input type="date" id="EndDateID" name="End Date" placeholder="End Date" class="form-control"/>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-6">
+                            <center>
+                                <div class="mb-3">
+                                    <a class="btn btn-success w-100 btn-lg" id="Button4">Issue</a>
+                                </div>
+                            </center>
+                        </div>
+
+                        <div class="col-6">
+                            <center>
+                                <div class="mb-3">
+                                    <a class="btn btn-danger w-100 btn-lg" id="Button5">Delete </a>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <a class="nav-link" asp-page="/Home"><< Back to Home</a><br />
+        </div>
+
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>Issued Game List</h4>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Column 1</th>
+                                        <th>Column 2</th>
+                                        <th>Column 3</th>
+                                        <th>Column 4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table rows go here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

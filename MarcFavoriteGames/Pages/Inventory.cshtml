@@ -1,0 +1,468 @@
+﻿@page
+@model MarcFavoriteGames.Pages.InventoryModel
+@Html.Raw(ViewData["Script"])
+@{
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+
+            <div class="card">
+                <div class="card-body">   
+                    <form method="post" enctype="multipart/form-data" novalidate>                     
+                        <div class="col">
+                            <center>
+                                <h2>Game Inventory</h2>
+
+                                <!-- Image preview (on top) -->
+                                <img id="gameImagePreview" src="/images/game.png" alt="Game Image"
+                                     style="max-width: 200px; max-height: 200px; margin-bottom: 10px;">
+
+                                <!-- File input for uploading game image (below the image) -->
+                                <div class="form-group">
+                                    <label for="gameImage"></label>
+                                    <input type="file" class="form-control" asp-for="GameImage"
+                                           id="gameImageUpload" accept="image/*" onchange="previewImage(event)" />
+                                    <input type="hidden" id="hiddenImagePath" name="HiddenImagePath" />
+                                </div>
+
+                                <div class="form-group row mt-3">
+                                   
+                                        <div class="col-md-4">
+                                            <label for="GameID">Game ID</label>
+                                            <div class="input-group">
+                                                <input type="text" id="GameID" class="form-control" asp-for="GameID"
+                                                       placeholder="Enter Game ID" required />
+                                                <button type="submit" asp-page-handler="Check"
+                                                        class="btn btn-primary" title="Check Game ID">
+                                                    <i class="fas fa-check-circle" style="color: white;"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                  
+
+                                    <div class="col-md-8">
+                                        <label for="GameName">Game Name</label>
+                                        <input type="text" class="form-control" asp-for="GameName" placeholder="Enter Game Name" />
+                                    </div>
+                                </div>
+                                <!-- Hidden input for storing the retrieved game image link -->
+                                <input type="hidden" id="hiddenGameImageLink" value="@ViewData["GameImageLink"]" />
+                            </center>
+                        </div>
+
+                        <script>
+                            // Handles image preview when a file is selected
+                            function previewImage(event) {
+                                const file = event.target?.files?.[0];
+                                const preview = document.getElementById('gameImagePreview');
+                                const hiddenImagePath = document.getElementById('hiddenImagePath')?.value || '/images/game.png';
+
+                                if (file) {
+                                    if (file.type.startsWith('image/')) {
+                                        const reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                        };
+                                        reader.readAsDataURL(file);
+                                    } else {
+                                        alert('Please select a valid image file.');
+                                        preview.src = hiddenImagePath;  // Fall back to existing image
+                                    }
+                                } else {
+                                    preview.src = hiddenImagePath;
+                                }
+                            }
+
+                            // Auto-fills the image preview when the 'Check' button populates data
+                            function loadCheckedGameImage(imagePath) {
+                                const hiddenImagePath = document.getElementById('hiddenImagePath');
+                                const preview = document.getElementById('gameImagePreview');
+
+                                if (hiddenImagePath && preview) {
+                                    hiddenImagePath.value = imagePath;
+                                    preview.src = imagePath || '/images/game.png';
+                                }
+                            }
+                        </script>
+
+
+
+
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label>Language</label>
+                                <div class="mb-3">
+                                    <select class="form-control" asp-for="Language">
+                                        <option value="">Select a Language</option>
+                                        <option value="am">Amharic</option>
+                                        <option value="az">Azerbaijani</option>
+                                        <option value="bn">Bengali</option>
+                                        <option value="bg">Bulgarian</option>
+                                        <option value="cs">Czech</option>
+                                        <option value="da">Danish</option>
+                                        <option value="nl">Dutch</option>
+                                        <option value="en">English</option>
+                                        <option value="et">Estonian</option>
+                                        <option value="fa">Persian (Farsi)</option>
+                                        <option value="fi">Finnish</option>
+                                        <option value="fr">French</option>
+                                        <option value="gu">Gujarati</option>
+                                        <option value="ha">Hausa</option>
+                                        <option value="he">Hebrew</option>
+                                        <option value="hi">Hindi</option>
+                                        <option value="hu">Hungarian</option>
+                                        <option value="id">Indonesian</option>
+                                        <option value="it">Italian</option>
+                                        <option value="ja">Japanese</option>
+                                        <option value="ko">Korean</option>
+                                        <option value="lt">Lithuanian</option>
+                                        <option value="lv">Latvian</option>
+                                        <option value="ml">Malayalam</option>
+                                        <option value="ms">Malay</option>
+                                        <option value="my">Burmese</option>
+                                        <option value="no">Norwegian</option>
+                                        <option value="pl">Polish</option>
+                                        <option value="pt">Portuguese</option>
+                                        <option value="ro">Romanian</option>
+                                        <option value="ru">Russian</option>
+                                        <option value="si">Sinhala</option>
+                                        <option value="sk">Slovak</option>
+                                        <option value="sr">Serbian</option>
+                                        <option value="sv">Swedish</option>
+                                        <option value="sw">Swahili</option>
+                                        <option value="ta">Tamil</option>
+                                        <option value="te">Telugu</option>
+                                        <option value="th">Thai</option>
+                                        <option value="tr">Turkish</option>
+                                        <option value="uk">Ukrainian</option>
+                                        <option value="ur">Urdu</option>
+                                        <option value="vi">Vietnamese</option>
+                                        <option value="xh">Xhosa</option>
+                                        <option value="zh">Chinese (Mandarin)</option>
+                                        <option value="zu">Zulu</option>
+                                    </select>
+                                </div>
+
+                                <label>Gaming Company</label>
+                                <div class="mb-3">
+                                    <select class="form-control" asp-for="CompanyName">
+                                        <option value="">Select Game Company</option>
+                                        <option value="activision">Activision</option>
+                                        <option value="bandai-namco">Bandai Namco</option>
+                                        <option value="bethesda">Bethesda Softworks</option>
+                                        <option value="capcom">Capcom</option>
+                                        <option value="cd-projekt">CD Projekt Red</option>
+                                        <option value="devolver">Devolver Digital</option>
+                                        <option value="digital-extremes">Digital Extremes</option>
+                                        <option value="ea">Electronic Arts (EA)</option>
+                                        <option value="epic-games">Epic Games</option>
+                                        <option value="frostbite">Frostbite (EA DICE)</option>
+                                        <option value="From-software">From Software</option>
+                                        <option value="konami">Konami</option>
+                                        <option value="microids">Microids</option>
+                                        <option value="microsoft">Microsoft Game Studios</option>
+                                        <option value="mojang">Mojang Studios</option>
+                                        <option value="naughty-dog">Naughty Dog</option>
+                                        <option value="netmarble">Netmarble</option>
+                                        <option value="nintendo">Nintendo</option>
+                                        <option value="paradox">Paradox Interactive</option>
+                                        <option value="platinumgames">PlatinumGames</option>
+                                        <option value="riot-games">Riot Games</option>
+                                        <option value="rockstar">Rockstar Games</option>
+                                        <option value="sega">Sega</option>
+                                        <option value="sony">Sony Interactive Entertainment</option>
+                                        <option value="square-enix">Square Enix</option>
+                                        <option value="take-two">Take-Two Interactive</option>
+                                        <option value="tencent">Tencent Games</option>
+                                        <option value="ubisoft">Ubisoft</option>
+                                        <option value="valve">Valve Corporation</option>
+                                        <option value="warner-bros">Warner Bros. Games</option>
+                                        <option value="zynga">Zynga</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Game Director</label>
+                                <div class="mb-3">
+                                    <select class="form-control" asp-for="DirectorName">
+                                        <option value="">Select Game Director</option>
+                                        <option value="kj">Kojami</option>
+                                        <option value="Jn">John</option>
+                                        <option value="Rt">Robert</option>
+                                        <option value="Hu">Hitaru</option>
+                                        <option value="My">Myazaki</option>
+                                        <option value="Ta">Tasha</option>
+                                        <option value="Ea">Estarossa</option>
+
+                                    </select>
+                                </div>
+
+                                <label>Release Date</label>
+                                <div class="mb-3">
+                                    <input type="date" asp-for="ReleaseDate" placeholder="Release Date" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Genre</label>
+                                <div class="mb-3">
+                                    <select class="form-control" asp-for="Genre" multiple size="5">
+                                        <option value="action">Action</option>
+                                        <option value="action-adventure">Action-Adventure</option>
+                                        <option value="arcade">Arcade</option>
+                                        <option value="battle-royale">Battle Royale</option>
+                                        <option value="beat-em-up">Beat 'Em Up</option>
+                                        <option value="board-game">Board Game</option>
+                                        <option value="card-game">Card Game</option>
+                                        <option value="city-building">City Building</option>
+                                        <option value="construction-management">Construction and Management</option>
+                                        <option value="dungeon-crawler">Dungeon Crawler</option>
+                                        <option value="fighting">Fighting</option>
+                                        <option value="first-person-shooter">First-Person Shooter (FPS)</option>
+                                        <option value="hack-and-slash">Hack and Slash</option>
+                                        <option value="hidden-object">Hidden Object</option>
+                                        <option value="horror">Horror</option>
+                                        <option value="idle">Idle (Incremental)</option>
+                                        <option value="interactive-story">Interactive Story</option>
+                                        <option value="life-simulation">Life Simulation</option>
+                                        <option value="massively-multiplayer">Massively Multiplayer Online (MMO)</option>
+                                        <option value="metroidvania">Metroidvania</option>
+                                        <option value="party-game">Party Game</option>
+                                        <option value="platformer">Platformer</option>
+                                        <option value="puzzle">Puzzle</option>
+                                        <option value="racing">Racing</option>
+                                        <option value="real-time-strategy">Real-Time Strategy (RTS)</option>
+                                        <option value="role-playing">Role-Playing Game (RPG)</option>
+                                        <option value="roguelike">Roguelike / Roguelite</option>
+                                        <option value="sandbox">Sandbox</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="stealth">Stealth</option>
+                                        <option value="survival">Survival</option>
+                                        <option value="third-person-shooter">Third-Person Shooter (TPS)</option>
+                                        <option value="tower-defense">Tower Defense</option>
+                                        <option value="turn-based-strategy">Turn-Based Strategy (TBS)</option>
+                                        <option value="visual-novel">Visual Novel</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label>Releases</label>
+                                <div class="mb-3">
+                                    <input type="text" asp-for="Releases" placeholder="Releases" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>IGDB Ratings</label>
+                                <div class="mb-3">
+                                    <input type="number" asp-for="Ratings" placeholder="IGDB Ratings" class="form-control"  />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Price(USD)</label>
+                                <div class="mb-3">
+                                    <input type="number" asp-for="Price" placeholder="Price USD" class="form-control"  />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label>Rental Stock</label>
+                                <div class="mb-3">
+                                    <input type="number" asp-for="RentalStock" placeholder="Rental Stock" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Current Stock</label>
+                                <div class="mb-3">
+                                    <input type="number" asp-for="CurrentStock" placeholder="Current Stock" class="form-control" readonly />
+                                </div>
+                            </div>                                                  
+
+                            <div class="col-md-4">
+                                <label>Rental Codes Given</label>
+                                <div class="mb-3">
+                                    <input type="number" id="RentalCode" name="RentalCode" placeholder="Rental Code" class="form-control" readonly />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+                                <label>Game Descrpition</label>
+                                <div class="mb-3">
+                                    <textarea class="form-control" asp-for="GameDescription" rows="2" placeholder="Game Description"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <button type="submit" asp-page-handler="AddGame" class="btn btn-success w-100 btn-lg">Add</button>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <button type="submit" asp-page-handler="UpdateGame" class="btn btn-warning w-100 btn-lg">Update</button>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <button type="submit" asp-page-handler="DeleteGame" class="btn btn-danger w-100 btn-lg">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <a class="nav-link" asp-page="/Home"><< Back to Home</a><br />
+        </div>
+
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">   
+                            <center>
+                                <h4>Game Inventory List</h4>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <!-- DataTables handles pagination, search, and sorting -->
+                            <table id="InventoryTable" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Game ID</th>
+                                        <th>Game Name</th>
+                                        <th>Genre</th>
+                                        <th>Director Name</th>
+                                        <th>Company Name</th>
+                                        <th>Release Date</th>
+                                        <th>Language</th>
+                                        <th>Ratings</th>
+                                        <th>Game Description</th>
+                                        <th>Rental Stock</th>
+                                        <th>Current Stock</th>
+                                        <th>Game Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var game in Model.InventoryList)
+                                    {
+                                        <tr>
+                                            <td>@game.GameID</td>
+                                            <td>@game.GameName</td>
+                                            <td>@game.Genre</td>
+                                            <td>@game.DirectorName</td>
+                                            <td>@game.CompanyName</td>
+                                            <td>@game.ReleaseDate</td>
+                                            <td>@game.Language</td>
+                                            <td>@game.Ratings</td>
+                                            <td>@game.GameDescription</td>
+                                            <td>@game.RentalStock</td>
+                                            <td>@game.CurrentStock</td>
+                                            <td>@game.GameImage</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--hidden image link-->
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const hiddenGameImageLink = document.getElementById('hiddenGameImageLink');
+
+            if (hiddenGameImageLink && hiddenGameImageLink.value) {
+                loadCheckedGameImage(hiddenGameImageLink.value);
+            }
+        });
+
+        function loadCheckedGameImage(imagePath) {
+            const hiddenImagePath = document.getElementById('hiddenImagePath');
+            const preview = document.getElementById('gameImagePreview');
+
+            if (hiddenImagePath && preview) {
+                hiddenImagePath.value = imagePath;
+                preview.src = imagePath || '/images/game.png';
+            }
+        }
+
+    </script>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#InventoryTable').DataTable({
+                paging: true,
+                searching: true,
+                lengthChange: true,
+                pageLength: 10,
+                lengthMenu: [5, 10, 25, 50, 100],
+                ordering: false //disable sorting
+            });
+        });
+
+    </script>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@TempData["SuccessMessage"]");
+    </script>
+    TempData.Remove("SuccessMessage"); <!-- This is to prevent the message from being shown again -->
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@TempData["ErrorMessage"]");
+    </script>
+    TempData["ErrorMessage"] = null; // Clear the message to prevent it from showing again
+}

@@ -1,0 +1,82 @@
+﻿@page
+@model MarcFavoriteGames.Pages.adminloginModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img width="150px" src="~/images/question.png" />
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h3>Admin Login</h3>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr />
+                        </div>
+                    </div>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col">
+                                <label>Admin Username</label>
+                                <div class="mb-3">
+                                    <input type="text" asp-for="AdminID" placeholder="Admin ID" class="form-control" />
+                                </div>
+
+                                <label>Admin Password</label>
+                                <div class="mb-3">
+                                    <input type="password" asp-for="AdminPW" placeholder="Admin Password" class="form-control" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <button type="submit" asp-route-clicked="true" class="btn btn-success w-100 btn-lg text-center">
+                                        Login
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <a class="nav-link" asp-page="/Home"><< Back to Home</a><br />
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["SuccessMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("SuccessMessage");
+}
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["ErrorMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("ErrorMessage");
+}

@@ -1,0 +1,178 @@
+﻿@using System.Security.Claims
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+
+    var username = User.Identity?.Name;
+    var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <link rel="stylesheet" href="~/MarcFavoriteGames.styles.css" asp-append-version="true" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MarcFavoriteGames</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery (Ensure this is loaded first) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+    <!-- Testing for alerts that should not be there 
+    <p>Session Username: @HttpContextAccessor.HttpContext?.Session.GetString("username")</p>
+    <p>TempData SuccessMessage: @TempData["SuccessMessage"]</p>
+    -->
+
+    <!--Testing to see which role is live
+    <p>Current Role: @HttpContextAccessor.HttpContext?.Session.GetString("role")</p>
+    -->
+
+    <!--Navbar / Header-->
+    <header>
+
+        <!-- left side nav bar pull-->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">
+                <img src="~/images/sword.png" width="30" height="30" />
+                Game Library
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-0">
+                    <li class="nav-item"><a class="nav-link" asp-page="/Home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/About">About</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Terms">Terms</a></li>
+                </ul>
+
+                <!-- Right-side nav bar pull-->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/Shared/HeaderActions?handler=ViewGames" class="nav-link">View Games</a>
+                    </li>
+
+                    @if (!User.Identity?.IsAuthenticated ?? true) // If User is not logged in can be == but is ?? checking for null
+                    {
+                        <li class="nav-item">
+                            <a href="/Shared/HeaderActions?handler=UserLogin" class="nav-link">User Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Shared/HeaderActions?handler=SignUp" class="nav-link">Sign Up</a>
+                        </li>
+                    }
+                    else // User is logged in
+                    {
+                        <li class="nav-item">
+                            <a href="/Shared/HeaderActions?handler=Logout" class="nav-link">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            @if (string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <span class="nav-link">Hello, Admin</span> <!--If Admin is logged in-->
+                            }
+                            else
+                            {
+                                <span class="nav-link">Hello, @username !</span> <!--If User is logged in-->
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main body center will change according to page-->
+    <main role="main" class="pb-3">
+        @if (TempData["WelcomeMessage"] != null)
+        {
+            <script>
+                alert("@TempData["Welcome !"]");
+            </script>
+        }
+
+        @RenderBody()
+    </main>
+
+
+
+
+    <!-- Footer -->
+    <footer class="border-top text-muted">
+        <div id="footer1" class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 text-center">
+                    <p>
+                        @if (string.IsNullOrEmpty(userRole))
+                        {
+                            <a href="/Shared/FooterActions?handler=AdminLogin" class="footerlinks">Admin Login</a>
+                        }
+                        @if (string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <a href="/Shared/FooterActions?handler=GameInventory" class="footerlinks">Game Inventory</a>
+                            <a href="/Shared/FooterActions?handler=GameRental" class="footerlinks">Game Rental</a>
+                            <a href="/Shared/FooterActions?handler=MemberManagement" class="footerlinks">Member Management</a>
+
+                            <!-- This is for Later Testing
+                            <a href="/Shared/FooterActions?handler=AuthorManagement" class="footerlinks">Developer Management</a>
+                            <a href="/Shared/FooterActions?handler=PublisherManagement" class="footerlinks">Company Management</a> - Not Done
+                            -->
+                        }
+                        @if (string.Equals(userRole, "User", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <a href="/UserProfile" class="footerlinks">User Profile</a>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer2" class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 text-center">
+                    <p style="color:whitesmoke">
+                        &copy; All rights reserved.
+                        <a class="footerlinks" href="#" target="_blank">Marc Guarino</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["SuccessMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("SuccessMessage");
+}
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@Html.Raw(TempData["ErrorMessage"]?.ToString().Replace("\"", "\\\""))");
+    </script>
+    TempData.Remove("ErrorMessage");
+}

@@ -1,0 +1,158 @@
+﻿@page
+@model MarcFavoriteGames.Pages.UserSignupModel
+@{
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 m-auto">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img width="100px" src="~/images/question.png" />
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>User Sign Up</h4>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr />
+                        </div>
+                    </div>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Full Name</label>
+                                <div class="mb-3">
+                                    <input type="text"  placeholder="Full Name" asp-for="FullID" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Date of Birth</label>
+                                <div class="mb-3">
+                                    <input type="date" asp-for="Dob" placeholder="Date of Birth" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Contact Number</label>
+                                <div class="mb-3">
+                                    <input type="number" asp-for="Con" placeholder="Contact Number" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Email</label>
+                                <div class="mb-3">
+                                    <input type="email" asp-for="Email" placeholder="Email ID" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>State</label>
+                                <div class="mb-3">
+                                    <select asp-for="State" aspclass="form-control" asp-items="Model.StateList" class="form-select w-100" placeholder="State">
+                                        <option value="">-- Select State --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>City</label>
+                                <div class="mb-3">
+                                    <input type="text" asp-for="City" placeholder="City" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>PinCode</label>
+                                <div class="mb-3">
+                                    <input type="number" asp-for="Pincode" placeholder="Pin Code" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Full Address</label>
+                                <div class="mb-3">
+                                    <textarea class="form-control" asp-for="FullAddress" rows="2" placeholder="Full Address"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <span class="badge bg-info rounded-pill">Login Credentials</span>
+                                </center>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>User ID</label>
+                                <div class="mb-3">
+                                    <input type="text" asp-for="memberID" placeholder="User ID" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                <div class="mb-3">
+                                    <input type="password" asp-for="PwID" placeholder="Password" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                
+                                    <button type="submit" asp-route-clicked="true" class="btn btn-info w-100 btn-lg text-center">
+                                        Sign Up
+                                    </button>
+                            
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <a class="nav-link" asp-page="/Home"><< Back to Home</a><br />
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@TempData["SuccessMessage"]");
+    </script>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert("@TempData["ErrorMessage"]");
+    </script>
+}
