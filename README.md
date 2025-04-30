@@ -69,9 +69,11 @@ Goals of this project
 - On click of the Go button, fields are sent to string storages
   * Connection is created, query SELECT to get information from database, and by using reader.Read() it fills the forms with the data.
 - Update Status just updates status.
-- Delete Option - Just delets the Member ID. In deleting the primary key, all corresponding table elements are also deleted.
+- Delete Option - Just deletes the Member ID. In deleting the primary key, all corresponding table elements are also deleted.
 - LoadMembers() - Loads data into the tables. / OnGet function
 - GridView and Datatables. (DataTables is used so that I dont have to rawcode a table and its manipulators.)
+
+![Member Management](MarcFavoriteGames/images/mm.png)
 
 ## Inventory Management
 - Upon filling the fields you can add the game to the database, and it will show up on the gridview.
