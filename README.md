@@ -81,6 +81,8 @@ Goals of this project
   * You can also update and delete, but only if all fields are filled with data already form the database.
 - Image and preview image - some Javascript used.
 
+![Game Inventory](MarcFavoriteGames/images/inventory.png)
+
 ## Future Plans
 The Project is still ongoing. I have not completed the rental system for the Library. The idea is that you can choose a game available in stock and rent it. The stock will change accordingly to what is rented. A user that is signed in will also have a profile page that they can edit and it will show the games they rented. The Admin user should also be able to delete or edit profile details.  
 
@@ -92,7 +94,7 @@ Some other things that need to be added:
 -Maybe a password strength modifier.  
 
 This project was just implemented for personal showcase of my skills, but it is possible that I can create a fully funcitonal website.  
--Deployment through the Azure hosting  
+-Deployment through the Azure hosting. Can pay for custom domain.
 -Use a Steam Api for me to add actual game codes.  
 -Game Data Api from IGN api(Ratings, Releases, and etc).  
 -Transforming the Library to a personal website with the library just being a small part of the website.  
