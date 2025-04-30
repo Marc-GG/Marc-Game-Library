@@ -62,6 +62,9 @@ Goals of this project
   * Create a identity which holds the claims and the authentication scheme.
   * Create a principal in case of more claims being created.
 
+![Claims](MarcFavoriteGames/images/claims.png)  
+
+
 ## Member Management
 - On click of the Go button, fields are sent to string storages
   * Connection is created, query SELECT to get information from database, and by using reader.Read() it fills the forms with the data.
