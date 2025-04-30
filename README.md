@@ -6,7 +6,7 @@ Goals of this project
 4. Create user profiles with limited permissions and a admin profile with access to everything
 5. Create a inventory of games that can be used for rental purposes.
 
-![Website](images/website.png)
+![Website](MarcFavoriteGames/images/website.png)
 
 ## Setup
 -Used Visual Studios 2022, Microsoft SQL Server Management Studio, and SQL Server 2022 configuration  
