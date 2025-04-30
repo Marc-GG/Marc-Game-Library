@@ -6,13 +6,20 @@ Goals of this project
 4. Create user profiles with limited permissions and a admin profile with access to everything
 5. Create a inventory of games that can be used for rental purposes.
 
-![Website](MarcFavoriteGames/images/website.png)
+![Website](MarcFavoriteGames/images/website.png)  
 
 ## Setup
 -Used Visual Studios 2022, Microsoft SQL Server Management Studio, and SQL Server 2022 configuration  
 -Used ASP.NET Razor Pages  
 -BootStrap and Jquery are added as libraries by default in Visual Studios 2022  
 -Added libraries: Fontawesome, Datatables, and AJax
+
+#### How to Run
+1. Download Repository.  
+2. Download SQL script.  
+3. Input SQL script into SQL Server Management Studios.  
+4. Connect to the SQL server.  
+5. Use Visual Studios Debugger and run the code from the repository.  
 
 ## Layout
 -By default you are given a _Layout page which is the same as the Master page of older asp.net.  
