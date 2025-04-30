@@ -50,6 +50,8 @@ Goals of this project
 
 ![signup](MarcFavoriteGames/images/signup.png)  
 
+![connectionstring](MarcFavoriteGames/images/connectionstring.png) 
+
 ## User Login / Admin Login
 - By default give everyone restricted access.
 - Release restrictions and allow users who are logged in to access certain pages using a session.
