@@ -77,12 +77,12 @@ Some other things that need to be added:
 -Status updates should be tied with user restricitons.  
 -Maybe a password strength modifier.  
 
-This project was just implemented for personal showcase of my skills, but it is possible that I can create a fully funcitonal website.
--Deployment through the Azure hosting
--Use a Steam Api for me to add actual game codes.
--Game Data Api from IGN api(Ratings, Releases, and etc).
--Transforming the Library to a personal website with the library just being a small part of the website.
--Add more functional pages. Maybe a Forums page.
+This project was just implemented for personal showcase of my skills, but it is possible that I can create a fully funcitonal website.  
+-Deployment through the Azure hosting  
+-Use a Steam Api for me to add actual game codes.  
+-Game Data Api from IGN api(Ratings, Releases, and etc).  
+-Transforming the Library to a personal website with the library just being a small part of the website.  
+-Add more functional pages. Maybe a Forums page.  
 
 ## Resources
 -Bootstrap - https://getbootstrap.com/  
