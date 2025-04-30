@@ -29,7 +29,9 @@ Goals of this project
 -Created a Connection String - This will link the code to the database.
  * In appsettings.json : strcon":"Server=localhost\\SQLEXPRESS;Database=glibraryDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 
-![Website](MarcFavoriteGames/images/database.png)
+![Database](MarcFavoriteGames/images/database.png)  
+
+![Settings](MarcFavoriteGames/images/Settings.png)  
 
 ## CRUD
 -This web app shares a similar structure throughout its functionality.  
