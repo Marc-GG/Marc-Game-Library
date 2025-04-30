@@ -48,6 +48,8 @@ Goals of this project
   * Parameter is created with the database placeholder, the stored string is passed into the database.
 - Check if user already exists or not, if not, signup is successful, redirect to user login page.
 
+![signup](MarcFavoriteGames/images/signup.png)  
+
 ## User Login / Admin Login
 - By default give everyone restricted access.
 - Release restrictions and allow users who are logged in to access certain pages using a session.
