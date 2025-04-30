@@ -31,7 +31,7 @@ Goals of this project
 
 ![Database](MarcFavoriteGames/images/database.png)  
 
-![Settings](MarcFavoriteGames/images/Settings.png)  
+![Settings](MarcFavoriteGames/images/dsettings.png)  
 
 ## CRUD
 -This web app shares a similar structure throughout its functionality.  
